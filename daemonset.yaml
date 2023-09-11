@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: backend-app
+  namespace: default 
+  labels: 
+    app: backend-app
+spec:
+  selector:
+    matchLabels:
+      name: backend-app
+  template:
+    metadata:
+      labels:
+        name: backend-app
+    spec:
+      containers:
+      - name: backend-app
+        image: victorocv/daemonset-app
+        resources:
+          limits:
+            memory: 25Mi
+          requests:
+            cpu: 50m
+      terminationGracePeriodSeconds: 30
